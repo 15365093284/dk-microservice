@@ -1,0 +1,34 @@
+server:
+  port: 8084
+# 数据源
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dk_course?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: dukang123
+  application:
+    name: course-service
+dubbo:
+  application:
+    name: ${spring.application.name}  #注册到注册中心的名称
+  registry:
+    address: zookeeper://127.0.0.1:2181  #注册中心地址
+  scan:
+    base-packages: com.dk.course.service  #扫描注解包通过该设置将服务注册到zookeeper
+  protocol:
+    name: dubbo  #采用dubbo协
+    port: 20880 #发布dubbo端口号为20880
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.dk.course
+pagehelper:
+  helperDialect: mysql
+  params: count=countSql
+  reasonable: false
+  supportMethodsArguments: true
+

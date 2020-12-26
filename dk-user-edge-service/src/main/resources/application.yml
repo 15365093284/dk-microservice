@@ -1,0 +1,24 @@
+server:
+  port: 8083
+# 数据源
+spring:
+  application:
+    name: user-edge-service
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+      timeout: 5000
+dubbo:
+  application:
+    name: ${spring.application.name}  #注册到注册中心的名称
+  registry:
+    address: zookeeper://127.0.0.1:2181  #注册中心地址与服务者一样
+  consumer:
+    timeout: 5000 #调用服务超时时间

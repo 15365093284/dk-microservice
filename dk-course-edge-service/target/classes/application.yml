@@ -1,0 +1,13 @@
+  server:
+  port: 80835
+# 数据源
+spring:
+  application:
+    name: course-edge-service
+dubbo:
+  application:
+    name: ${spring.application.name}  #注册到注册中心的名称
+  registry:
+    address: zookeeper://127.0.0.1:2181  #注册中心地址与服务者一样
+  consumer:
+    timeout: 5000 #调用服务超时时间

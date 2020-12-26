@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: message-service
+dubbo:
+  application:
+    name: ${spring.application.name}  #注册到注册中心的名称
+  registry:
+    address: zookeeper://127.0.0.1:2181  #注册中心地址
+  scan:
+    base-packages: com.dk.message.service  #扫描注解包通过该设置将服务注册到zookeeper
+  protocol:
+    name: dubbo  #采用dubbo协
+    port: 20880 #发布dubbo端口号为20880
